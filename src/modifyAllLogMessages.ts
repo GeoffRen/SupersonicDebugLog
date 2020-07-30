@@ -20,7 +20,6 @@ export async function commentAllLogMessages(): Promise<void> {
 
 export async function uncommentAllLogMessages(): Promise<void> {
     const editor = vscode.window.activeTextEditor;
-    console.log("editor", editor);
     if (!editor) {
         return;
     }

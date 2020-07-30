@@ -1,65 +1,130 @@
-# automaticprogrammaticsupersonicconsolelog README
+# Automatic Programmatic Supersonic Console Log README
 
-This is the README for your extension "automaticprogrammaticsupersonicconsolelog". After writing up a brief description, we recommend including the following sections.
+This extension simplifies debugging with logs by automating the creation of logs.
+
+This extension was inspired by the other similar extensions. Personally, I found that no one existing logging extension contained the complete feature set I wanted. At best, the features I wanted were split between at least three other extensions. So I wrote my own extension. The hope is that this is the logging extension with the most complete feature set.
+
+## TLDR
+
+- Default supported languages: C++, C#, Go, Java, Javascript, Typescript, Python, r, Ruby, Swift.
+  - If you want a different language or want to change the log structure of a default language, use the [automaticProgrammaticSupersonicConsoleLog.languageSettings] setting.
+- Either highlight text or place the cursor on the text to use
+- Insert log the line above: `shift + alt + q` or Command Palette `Automatic Programmatic Supersonic Console Log: Insert Log Message`
+- Insert log the line below: `shift + alt + e` or Command Palette `Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Below`
+- Insert log below a block below: `shift + alt + w` or Command Palette `Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Above`
+- Comment all logs inserted by the extension: `shift + alt + c` or Command Palette `Automatic Programmatic Supersonic Console Log: Comment All Log Messages`
+- Uncomment all logs inserted by the extension: `ctrl/cmd + shift + alt + c` or Command Palette `Automatic Programmatic Supersonic Console Log: Uncomment All Log Messages`
+- Delete all logs inserted by the extension: `shift + alt + d` or Command Palette `Automatic Programmatic Supersonic Console Log: Delete All Log Messages`
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Multi language support
 
-For example if there is an image subfolder under your extension project workspace:
+#### Default support for 10 popular languages
 
-\!\[feature X\]\(images/feature-x.png\)
+By default, this extension supports the following languages:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- C++
+- C#
+- Go
+- Java
+- Javascript
+- Typescript
+- Python
+- r
+- Ruby
+- Swift
 
-## Requirements
+#### Easily add support for any other language
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Using the [automaticProgrammaticSupersonicConsoleLog.languageSettings](#automaticProgrammaticSupersonicConsoleLog.languageSettings) setting, you can add support for any language you require.
+
+### Easily insert labelled log messages
+
+The label structure can be changed using the [automaticProgrammaticSupersonicConsoleLog.label](#automaticProgrammaticSupersonicConsoleLog.label) setting.
+
+#### Highlight specific text or use the auto text select
+
+If you have text highlighted, the extension will log the highlighted text. Else if your cursor is placed on some text, the extension will log the text your cursor is on. Otherwise, a [snippet](#includes-snippet-support) will be inserted.
+
+#### Insert log messages after a block
+
+Shortcut: `shift + alt + w`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Insert Log Message`
+
+A block is defined as anything enclosed by `<`, `(`, `[`, or `{` characters.
+
+#### Insert log messages above
+
+Shortcut: `shift + alt + q`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Above`
+
+#### Insert log messages below
+
+Shortcut: `shift + alt + e`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Below`
+
+### Includes snippet support
+
+A snippet is a blank log. These are language specific and can be changed using the [automaticProgrammaticSupersonicConsoleLog.languageSettings](#automaticProgrammaticSupersonicConsoleLog.languageSettings) setting. To insert a snippet, use one of the `Insert` commands with no text selected. The cursor must not be touching any text.
+
+### Modify all logs inserted by the extension
+
+#### Comment all logs inserted by the extension
+
+Shortcut: `shift + alt + c`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Comment All Log Messages`
+
+#### Uncomment all logs inserted by the extension
+
+Shortcut: `ctrl/cmd + shift + alt + c`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Uncomment All Log Messages`
+
+#### Delete all logs inserted by the extension
+
+Shortcut: `shift + alt + d`
+
+Command Palette: `Automatic Programmatic Supersonic Console Log: Delete All Log Messages`
+
+### Multiple cursor support
+
+### Wrapped log messages
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+### `automaticProgrammaticSupersonicConsoleLog.label`
 
-## Known Issues
+What the label part of the log looks like.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Use `TEXT` to describe where the extension will insert the name of the variable to be logged.
+- Where the label is placed in the log can be controlled with `automaticProgrammaticSupersonicConsoleLog.languageSettings`.
+
+### `automaticProgrammaticSupersonicConsoleLog.wrapLogMessage`
+
+Whether the log message should be wrapped with other logs.
+
+- The wrapped log structure can be defined with `automaticProgrammaticSupersonicConsoleLog.languageSettings`.
+
+### `automaticProgrammaticSupersonicConsoleLog.defaultLanguageSettings`
+
+The default language setting if the current language does not exist in `automaticProgrammaticSupersonicConsoleLog.languageSettings`.
+
+### `automaticProgrammaticSupersonicConsoleLog.languageSettings`
+
+Describes the format of the logs in different programming languages.
+
+- Use `LABEL` to describe where the extension will insert the descriptor label. The descriptor label is defined with `#automaticProgrammaticSupersonicConsoleLog.label#`
+- Use `TEXT` to describe where the extension will insert the variable to be logged.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release of automaticprogrammaticsupersonicconsolelog

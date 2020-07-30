@@ -38,12 +38,12 @@ function getInsertPositionAfterBrackets(document: vscode.TextDocument, startLine
     let lineNum = startLine;
     for (lineNum; lineNum < document.lineCount; lineNum++) {
         const curText = document.lineAt(lineNum).text;
-        const openBracketMatches = curText.match(/[\<\[\{\(]/g);
+        const openBracketMatches = curText.match(/[<[{(]/g);
         if (openBracketMatches) {
             bracketCount += openBracketMatches.length;
         }
 
-        const closedBracketMatches = curText.match(/[\>\]\}\)]/g);
+        const closedBracketMatches = curText.match(/[>\]})]/g);
         if (closedBracketMatches) {
             bracketCount -= closedBracketMatches.length;
         }

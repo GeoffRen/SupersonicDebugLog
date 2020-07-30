@@ -2,7 +2,7 @@
 	"name": "automaticprogrammaticsupersonicconsolelog",
 	"displayName": "AutomaticProgrammaticSupersonicConsoleLog",
 	"description": "Supports creating log messages in every language conceivable. This extension allows you to AUTOMATICALLY/PROGRAMMATICALLY insert meaningful log messages into your code at SUPERSONIC speeds.",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.47.0"
 	},
@@ -12,6 +12,7 @@
 	"activationEvents": [
 		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessage",
 		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
+		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
 		"onCommand:automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
 		"onCommand:automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
 		"onCommand:automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages"
@@ -30,16 +31,40 @@
 					"type": "boolean",
 					"default": false,
 					"description": "Whether the log message should be wrapped with other logs. The wrapped log structure can be defined with `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
-				},				
+				},
+				"automaticProgrammaticSupersonicConsoleLog.defaultLanguageSettings": {
+					"type": "object",
+					"default": {
+						"commentSymbol": "//",
+						"logFormat": "console.log('LABEL' + TEXT);",
+						"defaultLogFormat": "console.log();",
+						"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
+					},
+					"description": "The default language setting if the current language does not exist in `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
+				},
 				"automaticProgrammaticSupersonicConsoleLog.languageSettings": {
 					"type": "array",
 					"default": [
+						{
+							"commentSymbol": "//",
+							"fileExtension": "cpp",
+							"logFormat": "cout << \"LABEL\" << TEXT << endl;",
+							"defaultLogFormat": "cout << << endl;",
+							"wrappedLogFormat": "cout << \"~~~~~~ APSCL ~~~~~~\" << endl;"
+						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "cs",
 							"logFormat": "Console.WriteLine(\"LABEL\" + TEXT);",
 							"defaultLogFormat": "Console.WriteLine();",
 							"wrappedLogFormat": "Console.WriteLine(\"~~~~~~ APSCL ~~~~~~\");"
+						},
+						{
+							"commentSymbol": "//",
+							"fileExtension": "go",
+							"logFormat": "fmt.Println(\"LABEL\" + TEXT)",
+							"defaultLogFormat": "fmt.Println()",
+							"wrappedLogFormat": "fmt.Println(\"~~~~~~ APSCL ~~~~~~\")"
 						},
 						{
 							"commentSymbol": "//",
@@ -68,6 +93,27 @@
 							"logFormat": "print(\"LABEL\" + TEXT)",
 							"defaultLogFormat": "print()",
 							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
+						},
+						{
+							"commentSymbol": "#",
+							"fileExtension": "r",
+							"logFormat": "cat(\"LABEL\", TEXT, \"\\n\")",
+							"defaultLogFormat": "print()",
+							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
+						},
+						{
+							"commentSymbol": "#",
+							"fileExtension": "rb",
+							"logFormat": "puts \"LABEL + #TEXT\"",
+							"defaultLogFormat": "puts ",
+							"wrappedLogFormat": "puts \"~~~~~~ APSCL ~~~~~~\""
+						},
+						{
+							"commentSymbol": "//",
+							"fileExtension": "swift",
+							"logFormat": "print(\"LABEL \\(TEXT)\")",
+							"defaultLogFormat": "print()",
+							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
 						}
 					],
 					"description": "Describes the format of the logs in different programming languages. Use LABEL to describe where the extension will insert the descriptor label. The descriptor label is defined with `#automaticProgrammaticSupersonicConsoleLog.label#` Use TEXT to describe where the extension will insert the variable to be logged."
@@ -84,6 +130,10 @@
 				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Below"
 			},
 			{
+				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
+				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Above"
+			},
+			{
 				"command": "automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
 				"title": "Automatic Programmatic Supersonic Console Log: Comment All Log Messages"
 			},
@@ -95,19 +145,54 @@
 				"command": "automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
 				"title": "Automatic Programmatic Supersonic Console Log: Delete All Log Messages"
 			}
+		],
+		"keybindings": [
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessage",
+				"key": "alt+shift+w",
+				"mac": "alt+shift+w"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
+				"key": "alt+shift+e",
+				"mac": "alt+shift+e"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
+				"key": "alt+shift+q",
+				"mac": "alt+shift+q"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
+				"key": "alt+shift+c",
+				"mac": "alt+shift+c"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
+				"key": "ctrl+alt+shift+c",
+				"mac": "cmd+alt+shift+c"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
+				"key": "alt+shift+d",
+				"mac": "alt+shift+d"
+			}
 		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts",
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
 		"@types/node": "^13.11.0",
 		"@types/vscode": "^1.47.0",
+		"@typescript-eslint/eslint-plugin": "^3.7.1",
+		"@typescript-eslint/parser": "^3.7.1",
+		"eslint": "^7.5.0",
 		"glob": "^7.1.6",
-		"tslint": "^6.1.2",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"
 	}
