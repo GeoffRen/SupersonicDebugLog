@@ -1,7 +1,7 @@
 {
 	"name": "automaticprogrammaticsupersonicconsolelog",
 	"displayName": "AutomaticProgrammaticSupersonicConsoleLog",
-	"description": "This extension allows you to AUTOMATICALLY/PROGRAMMATICALLY insert meaningful log messages into your code at SUPERSONIC speeds. Supports log messages in every language conceivable.",
+	"description": "Supports creating log messages in every language conceivable. This extension allows you to AUTOMATICALLY/PROGRAMMATICALLY insert meaningful log messages into your code at SUPERSONIC speeds.",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.47.0"
@@ -11,48 +11,66 @@
 	],
 	"activationEvents": [
 		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessage",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageBelow"
+		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
+		"onCommand:automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
+		"onCommand:automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
+		"onCommand:automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
 			"title": "Automatic Programmatic Supersonic Console Log",
 			"properties": {
-				"automaticProgrammaticSupersonicConsoleLog.quote": {
+				"automaticProgrammaticSupersonicConsoleLog.label": {
 					"type": "string",
-					"enum": [
-						"\"",
-						"'",
-						"`"
-					],
-					"default": "'",
-					"description": "What type of quotes should be used in the logs."
+					"default": "APSCL TEXT: ",
+					"markdownDescription": "What the label part of the log looks like. Use TEXT to describe where the extension will insert the name of the variable to be logged. Where the label is placed in the log can be controlled with `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
 				},
+				"automaticProgrammaticSupersonicConsoleLog.wrapLogMessage": {
+					"type": "boolean",
+					"default": false,
+					"description": "Whether the log message should be wrapped with other logs. The wrapped log structure can be defined with `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
+				},				
 				"automaticProgrammaticSupersonicConsoleLog.languageSettings": {
 					"type": "array",
 					"default": [
 						{
+							"commentSymbol": "//",
 							"fileExtension": "cs",
-							"logFormat": "Console.WriteLine(\"LABEL\" + TEXT);"
+							"logFormat": "Console.WriteLine(\"LABEL\" + TEXT);",
+							"defaultLogFormat": "Console.WriteLine();",
+							"wrappedLogFormat": "Console.WriteLine(\"~~~~~~ APSCL ~~~~~~\");"
 						},
 						{
+							"commentSymbol": "//",
 							"fileExtension": "java",
-							"logFormat": "System.out.println(\"LABEL\" + TEXT);"
+							"logFormat": "System.out.println(\"LABEL\" + TEXT);",
+							"defaultLogFormat": "System.out.println();",
+							"wrappedLogFormat": "System.out.println(\"~~~~~~ APSCL ~~~~~~\");"
 						},
 						{
+							"commentSymbol": "//",
 							"fileExtension": "js",
-							"logFormat": "console.log('LABEL' + TEXT);"
+							"logFormat": "console.log('LABEL' + TEXT);",
+							"defaultLogFormat": "console.log();",
+							"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
 						},
 						{
+							"commentSymbol": "//",
 							"fileExtension": "ts",
-							"logFormat": "console.log('LABEL' + TEXT);"
+							"logFormat": "console.log('LABEL' + TEXT);",
+							"defaultLogFormat": "console.log();",
+							"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
 						},
 						{
+							"commentSymbol": "#",
 							"fileExtension": "py",
-							"logFormat": "print(\"LABEL\" + TEXT)"
+							"logFormat": "print(\"LABEL\" + TEXT)",
+							"defaultLogFormat": "print()",
+							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
 						}
 					],
-					"description": "Describes the format of the logs in different programming languages."
+					"description": "Describes the format of the logs in different programming languages. Use LABEL to describe where the extension will insert the descriptor label. The descriptor label is defined with `#automaticProgrammaticSupersonicConsoleLog.label#` Use TEXT to describe where the extension will insert the variable to be logged."
 				}
 			}
 		},
@@ -62,29 +80,33 @@
 				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageBelow",
+				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
 				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Below"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
+				"title": "Automatic Programmatic Supersonic Console Log: Comment All Log Messages"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
+				"title": "Automatic Programmatic Supersonic Console Log: Uncomment All Log Messages"
+			},
+			{
+				"command": "automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
+				"title": "Automatic Programmatic Supersonic Console Log: Delete All Log Messages"
 			}
 		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
+		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
 		"@types/vscode": "^1.47.0",
-		"@typescript-eslint/eslint-plugin": "^2.30.0",
-		"@typescript-eslint/parser": "^2.30.0",
-		"eslint": "^6.8.0",
 		"glob": "^7.1.6",
-		"mocha": "^7.1.2",
 		"tslint": "^6.1.2",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.3.0"

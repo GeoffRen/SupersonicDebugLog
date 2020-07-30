@@ -1,22 +1,23 @@
+import { APSCLConfig } from './APSCLConfig';
 import { LABEL, TEXT } from './constants';
-import { parseLanguageConfig } from './parseConfig';
 
 export interface LogOptions {
-    language: string;
     padding: number;
     prependNewLine: boolean;
-    text: string;
+    logMessage: string;
+    wrappedLogFormat: string;
 }
 
-
-export function createLog(logOptions: LogOptions): string {
-    const padding = ' '.repeat(logOptions.padding);
-    const prependNewLine = logOptions.prependNewLine ? '\n' : '';
-    const logMessage = getLogMessage(logOptions.language, "Test log", logOptions.text);
-    return `${prependNewLine}${padding}${logMessage}\n`;
-}
-
-function getLogMessage(language: string, label: string, text: string): string {
-    const logFormat = parseLanguageConfig(language).logFormat!;
+export function createLogMessage(apsclConfig: APSCLConfig, text: string, language: string): string {
+    const label = apsclConfig.getLabel().replace(TEXT, text);
+    const logFormat = apsclConfig.getLanguageSettings(language).logFormat;
     return logFormat.replace(LABEL, label).replace(TEXT, text);
+}
+
+export function createFullLog(logOptions: LogOptions): string {
+    const logMessage = logOptions.logMessage;
+    const padding = ' '.repeat(logOptions.padding);
+    const prependNewLine = !logOptions.prependNewLine ? '' : '\n';
+    const wrappedLogMessage = !logOptions.wrappedLogFormat ? '' : `${padding}${logOptions.wrappedLogFormat}\n`;
+    return `${prependNewLine}${wrappedLogMessage}${padding}${logMessage}\n${wrappedLogMessage}`;
 }
