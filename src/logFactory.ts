@@ -1,4 +1,4 @@
-import { APSCLConfig } from './APSCLConfig';
+import { SDLConfig } from './SDLConfig';
 import { LABEL, TEXT } from './constants';
 
 export interface LogOptions {
@@ -8,9 +8,9 @@ export interface LogOptions {
     wrappedLogFormat: string;
 }
 
-export function createLogMessage(apsclConfig: APSCLConfig, text: string, language: string): string {
-    const label = apsclConfig.getLabel().replace(TEXT, text);
-    const logFormat = apsclConfig.getLanguageSettings(language).logFormat;
+export function createLogMessage(sdlConfig: SDLConfig, text: string, language: string): string {
+    const label = sdlConfig.getLabel().replace(TEXT, text);
+    const logFormat = sdlConfig.getLanguageSettings(language).logFormat;
     return logFormat.replace(LABEL, label).replace(TEXT, text);
 }
 

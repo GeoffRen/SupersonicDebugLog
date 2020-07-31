@@ -2,7 +2,7 @@
 	"name": "supersonicdebuglog",
 	"displayName": "Supersonic Debug Log",
 	"description": "Supports creating log messages in every language conceivable. This extension allows you to insert meaningful log messages into your code at SUPERSONIC speeds.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"publisher": "GeoffRen",
 	"engines": {
 		"vscode": "^1.47.0"
@@ -35,7 +35,7 @@
 			"properties": {
 				"supersonicDebugLog.label": {
 					"type": "string",
-					"default": "APSCL TEXT: ",
+					"default": "SDL TEXT: ",
 					"markdownDescription": "What the label part of the log looks like. Use TEXT to describe where the extension will insert the name of the variable to be logged. Where the label is placed in the log can be controlled with `#supersonicDebugLog.languageSettings#`."
 				},
 				"supersonicDebugLog.wrapLogMessage": {
@@ -49,7 +49,7 @@
 						"commentSymbol": "//",
 						"logFormat": "console.log('LABEL' + TEXT);",
 						"defaultLogFormat": "console.log();",
-						"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
+						"wrappedLogFormat": "console.log('~~~~~~ SDL ~~~~~~');"
 					},
 					"markdownDescription": "The default language setting if the current language does not exist in `#supersonicDebugLog.languageSettings#`."
 				},
@@ -59,72 +59,72 @@
 						{
 							"commentSymbol": "//",
 							"fileExtension": "cpp",
-							"logFormat": "cout << \"LABEL\" << TEXT << endl;",
-							"defaultLogFormat": "cout << << endl;",
-							"wrappedLogFormat": "cout << \"~~~~~~ APSCL ~~~~~~\" << endl;"
+							"logFormat": "std::cout << \"LABEL\" << TEXT << endl;",
+							"defaultLogFormat": "std::cout << << endl;",
+							"wrappedLogFormat": "std::cout << \"~~~~~~ SDL ~~~~~~\" << endl;"
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "cs",
 							"logFormat": "Console.WriteLine(\"LABEL\" + TEXT);",
 							"defaultLogFormat": "Console.WriteLine();",
-							"wrappedLogFormat": "Console.WriteLine(\"~~~~~~ APSCL ~~~~~~\");"
+							"wrappedLogFormat": "Console.WriteLine(\"~~~~~~ SDL ~~~~~~\");"
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "go",
 							"logFormat": "fmt.Println(\"LABEL\" + TEXT)",
 							"defaultLogFormat": "fmt.Println()",
-							"wrappedLogFormat": "fmt.Println(\"~~~~~~ APSCL ~~~~~~\")"
+							"wrappedLogFormat": "fmt.Println(\"~~~~~~ SDL ~~~~~~\")"
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "java",
 							"logFormat": "System.out.println(\"LABEL\" + TEXT);",
 							"defaultLogFormat": "System.out.println();",
-							"wrappedLogFormat": "System.out.println(\"~~~~~~ APSCL ~~~~~~\");"
+							"wrappedLogFormat": "System.out.println(\"~~~~~~ SDL ~~~~~~\");"
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "js",
 							"logFormat": "console.log('LABEL' + TEXT);",
 							"defaultLogFormat": "console.log();",
-							"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
+							"wrappedLogFormat": "console.log('~~~~~~ SDL ~~~~~~');"
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "ts",
 							"logFormat": "console.log('LABEL' + TEXT);",
 							"defaultLogFormat": "console.log();",
-							"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
+							"wrappedLogFormat": "console.log('~~~~~~ SDL ~~~~~~');"
 						},
 						{
 							"commentSymbol": "#",
 							"fileExtension": "py",
 							"logFormat": "print(\"LABEL\" + TEXT)",
 							"defaultLogFormat": "print()",
-							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
+							"wrappedLogFormat": "print(\"~~~~~~ SDL ~~~~~~\")"
 						},
 						{
 							"commentSymbol": "#",
 							"fileExtension": "r",
 							"logFormat": "cat(\"LABEL\", TEXT, \"\\n\")",
 							"defaultLogFormat": "print()",
-							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
+							"wrappedLogFormat": "print(\"~~~~~~ SDL ~~~~~~\")"
 						},
 						{
 							"commentSymbol": "#",
 							"fileExtension": "rb",
 							"logFormat": "puts \"LABEL + #TEXT\"",
 							"defaultLogFormat": "puts ",
-							"wrappedLogFormat": "puts \"~~~~~~ APSCL ~~~~~~\""
+							"wrappedLogFormat": "puts \"~~~~~~ SDL ~~~~~~\""
 						},
 						{
 							"commentSymbol": "//",
 							"fileExtension": "swift",
 							"logFormat": "print(\"LABEL \\(TEXT)\")",
 							"defaultLogFormat": "print()",
-							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
+							"wrappedLogFormat": "print(\"~~~~~~ SDL ~~~~~~\")"
 						}
 					],
 					"markdownDescription": "Describes the format of the logs in different programming languages. Use LABEL to describe where the extension will insert the descriptor label. The descriptor label is defined with `#supersonicDebugLog.label#`. Use TEXT to describe where the extension will insert the variable to be logged."

@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { APSCLConfig, LanguageSettings } from './APSCLConfig';
+import { SDLConfig, LanguageSettings } from './SDLConfig';
 import { LABEL, TEXT } from './constants';
 import { getFileExtension } from './fileUtils';
 import { getPadding } from "./stringUtils";
@@ -11,7 +11,7 @@ export async function commentAllLogMessages(): Promise<void> {
     }
 
     const document = editor.document;
-    const languageSettings = new APSCLConfig().getLanguageSettings(getFileExtension(document));
+    const languageSettings = new SDLConfig().getLanguageSettings(getFileExtension(document));
     const logLinePositions = getLogLinePositions(document, languageSettings);
     await editor.edit((editBuilder) => {
         logLinePositions.forEach(insertPosition => editBuilder.insert(insertPosition, `${languageSettings.commentSymbol} `));
@@ -25,7 +25,7 @@ export async function uncommentAllLogMessages(): Promise<void> {
     }
 
     const document = editor.document;
-    const languageSettings = new APSCLConfig().getLanguageSettings(getFileExtension(document));
+    const languageSettings = new SDLConfig().getLanguageSettings(getFileExtension(document));
     const logLinePositions = getLogLinePositions(document, languageSettings);
     await editor.edit((editBuilder) => {
         for (const lineNum of logLinePositions.map(linePosition => linePosition.line)) {
@@ -45,7 +45,7 @@ export async function deleteAllLogMessages(): Promise<void> {
     }
 
     const document = editor.document;
-    const languageSettings = new APSCLConfig().getLanguageSettings(getFileExtension(document));
+    const languageSettings = new SDLConfig().getLanguageSettings(getFileExtension(document));
     const logLinePositions = getLogLinePositions(document, languageSettings);
     await editor.edit((editBuilder) => {
         for (const linePosition of logLinePositions) {

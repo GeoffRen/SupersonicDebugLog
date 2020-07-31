@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { APSCLConfig } from './APSCLConfig';
+import { SDLConfig } from './SDLConfig';
 import { getFileExtension } from './fileUtils';
 import { createFullLog, createLogMessage } from './logFactory';
 import { getPadding } from './stringUtils';
@@ -14,8 +14,8 @@ export async function insertLogMessage(getInsertPosition?: GetInsertPosition): P
 
     const document = editor.document;
     const language = getFileExtension(document);
-    const apsclConfig = new APSCLConfig();
-    const languageSettings = apsclConfig.getLanguageSettings(language);
+    const sdlConfig = new SDLConfig();
+    const languageSettings = sdlConfig.getLanguageSettings(language);
 
     await editor.edit(editBuilder => {
         for (const selection of editor.selections) {
@@ -24,8 +24,8 @@ export async function insertLogMessage(getInsertPosition?: GetInsertPosition): P
             const prependNewLine = insertPosition.line >= document.lineCount;
 
             const text = getSelectedText(document, selection);
-            const logMessage = !text ? languageSettings.defaultLogFormat : createLogMessage(apsclConfig, text, language);
-            const wrappedLogFormat = !apsclConfig.getWrapLogMessage() || !text ? '' : languageSettings.wrappedLogFormat;
+            const logMessage = !text ? languageSettings.defaultLogFormat : createLogMessage(sdlConfig, text, language);
+            const wrappedLogFormat = !sdlConfig.getWrapLogMessage() || !text ? '' : languageSettings.wrappedLogFormat;
             const log = createFullLog({ logMessage, padding, prependNewLine, wrappedLogFormat });
 
             editBuilder.insert(insertPosition, log);

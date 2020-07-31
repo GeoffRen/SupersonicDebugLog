@@ -8,7 +8,7 @@ export interface LanguageSettings {
     wrappedLogFormat?: string;
 }
 
-export class APSCLConfig {
+export class SDLConfig {
     private config: vscode.WorkspaceConfiguration;
 
     constructor() {
