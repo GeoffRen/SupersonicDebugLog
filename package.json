@@ -2,7 +2,7 @@
 	"name": "automaticprogrammaticsupersonicconsolelog",
 	"displayName": "Automatic Programmatic Supersonic Console Log",
 	"description": "Supports creating log messages in every language conceivable. This extension allows you to AUTOMATICALLY/PROGRAMMATICALLY insert meaningful log messages into your code at SUPERSONIC speeds.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "GeoffRen",
 	"engines": {
 		"vscode": "^1.47.0"
