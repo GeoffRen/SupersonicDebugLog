@@ -4,34 +4,34 @@ import { commentAllLogMessages, deleteAllLogMessages, uncommentAllLogMessages } 
 
 export function activate(context: vscode.ExtensionContext): void {
 	const insertLogMessageDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.insertLogMessage",
+		"supersonicdebuglog.insertLogMessage",
 		insertLogMessage
 	);
 
 	const getInsertPositionBelow: GetInsertPosition = (_: vscode.TextDocument, startLine: number): vscode.Position => new vscode.Position(startLine + 1, 0);
 	const insertLogMessageBelowDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
+		"supersonicdebuglog.insertLogMessageDirectlyBelow",
 		() => insertLogMessage(getInsertPositionBelow)
 	);
 
 	const getInsertPositionAbove: GetInsertPosition = (_: vscode.TextDocument, startLine: number): vscode.Position => new vscode.Position(startLine, 0);
 	const insertLogMessageAboveDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
+		"supersonicdebuglog.insertLogMessageDirectlyAbove",
 		() => insertLogMessage(getInsertPositionAbove)
 	);
 
 	const commentAllLogMessagesDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
+		"supersonicdebuglog.commentAllLogMessages",
 		commentAllLogMessages
 	);
 
 	const uncommentAllLogMessagesDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
+		"supersonicdebuglog.uncommentAllLogMessages",
 		uncommentAllLogMessages
 	);
 
 	const deleteAllLogMessagesDisposable = vscode.commands.registerCommand(
-		"automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
+		"supersonicdebuglog.deleteAllLogMessages",
 		deleteAllLogMessages
 	);
 

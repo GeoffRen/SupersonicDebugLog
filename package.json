@@ -1,7 +1,7 @@
 {
-	"name": "automaticprogrammaticsupersonicconsolelog",
-	"displayName": "Automatic Programmatic Supersonic Console Log",
-	"description": "Supports creating log messages in every language conceivable. This extension allows you to AUTOMATICALLY/PROGRAMMATICALLY insert meaningful log messages into your code at SUPERSONIC speeds.",
+	"name": "supersonicdebuglog",
+	"displayName": "Supersonic Debug Log",
+	"description": "Supports creating log messages in every language conceivable. This extension allows you to insert meaningful log messages into your code at SUPERSONIC speeds.",
 	"version": "1.0.1",
 	"publisher": "GeoffRen",
 	"engines": {
@@ -21,29 +21,29 @@
 	],
 	"icon": "images/icon.png",
 	"activationEvents": [
-		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessage",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
-		"onCommand:automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages"
+		"onCommand:supersonicdebuglog.insertLogMessage",
+		"onCommand:supersonicdebuglog.insertLogMessageDirectlyBelow",
+		"onCommand:supersonicdebuglog.insertLogMessageDirectlyAbove",
+		"onCommand:supersonicdebuglog.commentAllLogMessages",
+		"onCommand:supersonicdebuglog.uncommentAllLogMessages",
+		"onCommand:supersonicdebuglog.deleteAllLogMessages"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
-			"title": "Automatic Programmatic Supersonic Console Log",
+			"title": "Supersonic Debug Log",
 			"properties": {
-				"automaticProgrammaticSupersonicConsoleLog.label": {
+				"supersonicDebugLog.label": {
 					"type": "string",
 					"default": "APSCL TEXT: ",
-					"markdownDescription": "What the label part of the log looks like. Use TEXT to describe where the extension will insert the name of the variable to be logged. Where the label is placed in the log can be controlled with `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
+					"markdownDescription": "What the label part of the log looks like. Use TEXT to describe where the extension will insert the name of the variable to be logged. Where the label is placed in the log can be controlled with `#supersonicDebugLog.languageSettings#`."
 				},
-				"automaticProgrammaticSupersonicConsoleLog.wrapLogMessage": {
+				"supersonicDebugLog.wrapLogMessage": {
 					"type": "boolean",
 					"default": false,
-					"markdownDescription": "Whether the log message should be wrapped with other logs. The wrapped log structure can be defined with `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
+					"markdownDescription": "Whether the log message should be wrapped with other logs. The wrapped log structure can be defined with `#supersonicDebugLog.languageSettings#`."
 				},
-				"automaticProgrammaticSupersonicConsoleLog.defaultLanguageSettings": {
+				"supersonicDebugLog.defaultLanguageSettings": {
 					"type": "object",
 					"default": {
 						"commentSymbol": "//",
@@ -51,9 +51,9 @@
 						"defaultLogFormat": "console.log();",
 						"wrappedLogFormat": "console.log('~~~~~~ APSCL ~~~~~~');"
 					},
-					"markdownDescription": "The default language setting if the current language does not exist in `#automaticProgrammaticSupersonicConsoleLog.languageSettings#`."
+					"markdownDescription": "The default language setting if the current language does not exist in `#supersonicDebugLog.languageSettings#`."
 				},
-				"automaticProgrammaticSupersonicConsoleLog.languageSettings": {
+				"supersonicDebugLog.languageSettings": {
 					"type": "array",
 					"default": [
 						{
@@ -127,64 +127,64 @@
 							"wrappedLogFormat": "print(\"~~~~~~ APSCL ~~~~~~\")"
 						}
 					],
-					"markdownDescription": "Describes the format of the logs in different programming languages. Use LABEL to describe where the extension will insert the descriptor label. The descriptor label is defined with `#automaticProgrammaticSupersonicConsoleLog.label#`. Use TEXT to describe where the extension will insert the variable to be logged."
+					"markdownDescription": "Describes the format of the logs in different programming languages. Use LABEL to describe where the extension will insert the descriptor label. The descriptor label is defined with `#supersonicDebugLog.label#`. Use TEXT to describe where the extension will insert the variable to be logged."
 				}
 			}
 		},
 		"commands": [
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessage",
-				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message"
+				"command": "supersonicdebuglog.insertLogMessage",
+				"title": "Supersonic Debug Log: Insert Log Message"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
-				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Below"
+				"command": "supersonicdebuglog.insertLogMessageDirectlyBelow",
+				"title": "Supersonic Debug Log: Insert Log Message Directly Below"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
-				"title": "Automatic Programmatic Supersonic Console Log: Insert Log Message Directly Above"
+				"command": "supersonicdebuglog.insertLogMessageDirectlyAbove",
+				"title": "Supersonic Debug Log: Insert Log Message Directly Above"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
-				"title": "Automatic Programmatic Supersonic Console Log: Comment All Log Messages"
+				"command": "supersonicdebuglog.commentAllLogMessages",
+				"title": "Supersonic Debug Log: Comment All Log Messages"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
-				"title": "Automatic Programmatic Supersonic Console Log: Uncomment All Log Messages"
+				"command": "supersonicdebuglog.uncommentAllLogMessages",
+				"title": "Supersonic Debug Log: Uncomment All Log Messages"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
-				"title": "Automatic Programmatic Supersonic Console Log: Delete All Log Messages"
+				"command": "supersonicdebuglog.deleteAllLogMessages",
+				"title": "Supersonic Debug Log: Delete All Log Messages"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessage",
+				"command": "supersonicdebuglog.insertLogMessage",
 				"key": "alt+shift+w",
 				"mac": "alt+shift+w"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyBelow",
+				"command": "supersonicdebuglog.insertLogMessageDirectlyBelow",
 				"key": "alt+shift+e",
 				"mac": "alt+shift+e"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.insertLogMessageDirectlyAbove",
+				"command": "supersonicdebuglog.insertLogMessageDirectlyAbove",
 				"key": "alt+shift+q",
 				"mac": "alt+shift+q"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.commentAllLogMessages",
+				"command": "supersonicdebuglog.commentAllLogMessages",
 				"key": "alt+shift+c",
 				"mac": "alt+shift+c"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.uncommentAllLogMessages",
+				"command": "supersonicdebuglog.uncommentAllLogMessages",
 				"key": "ctrl+alt+shift+c",
 				"mac": "cmd+alt+shift+c"
 			},
 			{
-				"command": "automaticprogrammaticsupersonicconsolelog.deleteAllLogMessages",
+				"command": "supersonicdebuglog.deleteAllLogMessages",
 				"key": "alt+shift+d",
 				"mac": "alt+shift+d"
 			}
@@ -208,13 +208,13 @@
 		"vscode-test": "^1.3.0"
 	},
 	"license": "SEE LICENSE IN LICENSE.txt",
-	"homepage": "https://github.com/GeoffRen/AutomaticProgrammaticSupersonicConsoleLog/blob/master/README.md",
+	"homepage": "https://github.com/GeoffRen/SupersonicDebugLog/blob/master/README.md",
 	"bugs": {
-		"url": "https://github.com/GeoffRen/AutomaticProgrammaticSupersonicConsoleLog/issues",
+		"url": "https://github.com/GeoffRen/SupersonicDebugLog/issues",
 		"email": "thegeoffren@gmail.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/GeoffRen/AutomaticProgrammaticSupersonicConsoleLog"
+		"url": "https://github.com/GeoffRen/SupersonicDebugLog"
 	}
 }

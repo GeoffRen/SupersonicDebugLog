@@ -12,7 +12,7 @@ export class APSCLConfig {
     private config: vscode.WorkspaceConfiguration;
 
     constructor() {
-        this.config = vscode.workspace.getConfiguration("automaticProgrammaticSupersonicConsoleLog");
+        this.config = vscode.workspace.getConfiguration("supersonicDebugLog");
     }
 
     public getLabel(): string {
